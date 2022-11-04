@@ -1,0 +1,32 @@
+﻿@model Joe_Pizza.Models.Pizza
+
+@{
+    ViewData["Title"] = "Addtocart";
+}
+
+<h2>Addtocart</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div class="container" style="background-color:cadetblue; color: antiquewhite;">
+        <div class="col-log-4 col-md-4 col-sm-4">
+            <img style=" min-height:200px;width:200px;" src="@Url.Content(Model.ProductImage)" />
+
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8" style="color:black;">
+
+            <h1>Product Name: @Model.ProductName</h1>
+            <h2>Price: ₹@Model.ProductPrice</h2>
+            <h6>Description: @Model.ProductDescription</h6>
+
+            <input type="number" name="qty" value="1" id="qty" max="5" />
+
+            <input type="submit" value="Submit" class="btn btn-primary" />
+
+        </div>
+
+
+    </div>
+}
+

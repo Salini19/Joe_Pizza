@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Joe_Pizza.Models.Pizza>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Sucess!</strong> @TempData["msg"]
+    </div>
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.css" />
+
+<div class="col-lg-10 col-md-10 col-sm-10 p-3 mb-2 bg-primary text-white">
+    @if (TempData["total"] == null)
+    {
+
+        <h3 style=" background-color:black;border-radius:25px;padding-left:45%;color:white;">
+            Total Bill: ₹0
+        </h3>
+    }
+    else
+    {
+        <h3 style=" background-color:black;border-radius:25px;padding-left:45%;color:white;"> Total Bill: ₹@TempData["total"]</h3>
+
+    }
+
+</div>
+
+
+
+<div class="col-lg-2 col-md-2 col-sm-2">
+    <h3 style="color:#808080; font-family:'Arial Rounded MT';text-align:center"> <span class="btn btn-info">@Html.ActionLink("ViewCart", "ViewCart", "Home")</span></h3>
+</div>
+
+
+<div class="row" style="margin-bottom:100px;background-color:cadetblue; color:antiquewhite;">
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-lg-5 col-md-6" style="height:300px;margin-top:100px;margin-bottom:100px;">
+
+                <img class="img img-responsive cimg" src="@Url.Content(item.ProductImage)" style=" height:100%;width:100% ;border-radius:50px 50px 50px 50px" />
+            </div>
+            <div class="col-lg-5 col-md-6" style="height:300px;margin-top:100px;margin-bottom:100px;">
+                <h2 style="color:black; font-family:'Arial Rounded MT'; color:brown; text-align:center">@item.ProductName  ₹@item.ProductPrice</h2>
+                <h3 style="color:black;font-size:larger; font-family:'Arial Rounded MT';text-align:center">@item.ProductDescription</h3>
+                <h3 style="text-align:center">
+                    <a class="btn btn-success btn-sm" href="@Url.Action("AddtoCart", new { id = @item.ProductId })">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg>Add to cart
+                    </a>
+                </h3>
+
+            </div>
+
+        }
+    }
+</div>
+
+</div>
+
+@*<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-2">
+
+                <img style="min-height:200px;width:200px" src="@Url.Content(item.ProductImage)" />
+                <h4 style="text-align:center">@item.ProductName</h4>
+                <h5 style="text-align:center">@item.ProductPrice </h5>
+                <a class="btn btn-danger" href="@Url.Action("AddtoCart", new { id = @item.ProductId })"> Add to Cart </a>
+            </div>
+
+        }
+
+    </div>
+</div>*@
+
+
+
+
+
+@*<h2>@Html.ActionLink("View Products", "Index", "Laptop")</h2>*@
+
+
+@*<div id="themeSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#themeSlider" data-slide-to="1"></li>
+        <li data-target="#themeSlider" data-slide-to="2"></li>
+        <li data-target="#themeSlider" data-slide-to="3"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="imgOverlay"></div>
+            <img style="height:400px; width:100%;" src="~/image/1.jpg" alt="First slide" />        
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:400px; width:100%;" src="~/image/2.jpg" alt="Second Slide" />
+            
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:400px; width:100%;" src="~/image/3.jpg" alt="Third Slide" />
+
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:400px; width:100%;" src="~/image/4.jpg" alt="Fourth Slide" />
+
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+        <span class="fa fa-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#themeSlider" data-slide="next">
+        <span class="fa fa-chevron-right"></span>
+    </a>
+
+
+</div>
+*@
