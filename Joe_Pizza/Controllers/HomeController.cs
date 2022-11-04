@@ -111,33 +111,33 @@ namespace Joe_Pizza.Controllers
         [HttpPost]
         public ActionResult ViewCart(Order o)
         {
-            //List<PizzaModel>? list = JsonConvert.DeserializeObject<List<PizzaModel>>((string)TempData["Cart"]);
-            //Invoice i = new Invoice();
-            //i.InvoiceId = (int)HttpContext.Session.GetInt32("UserId")!;
-            //i.InvoiceDate = System.DateTime.Now;
-            //i.TotalBill = (float?)TempData["total"];
-            //_context.Invoices.Add(i);
-            //_context.SaveChanges();
+            List<PizzaModel>? list = JsonConvert.DeserializeObject<List<PizzaModel>>((string)TempData["Cart"]);
+            Invoice i = new Invoice();
+            i.InvoiceId = (int)HttpContext.Session.GetInt32("UserId")!;
+            i.InvoiceDate = System.DateTime.Now;
+            i.TotalBill = (float?)TempData["total"];
+            _context.Invoices.Add(i);
+            _context.SaveChanges();
 
-            //foreach (var item in list)
-            //{
-            //    Order or = new Order();
-            //    or.ProductId = item.productid;
-            //    or.InvoiceNo = i.InvoiceId;
-            //    or.OrderDate = System.DateTime.Now;
-            //    or.OrderQty = item.Quantity;
-            //    or.OrderUnitPrice = (int)item.price;
-            //    or.OrderBill = item.Bill;
-            //    _context.Orders.Add(or);
-            //    _context.SaveChanges();
+            foreach (var item in list)
+            {
+                Order or = new Order();
+                or.ProductId = item.productid;
+                or.InvoiceNo = i.InvoiceId;
+                or.OrderDate = System.DateTime.Now;
+                or.OrderQty = item.Quantity;
+                or.OrderUnitPrice = (int)item.price;
+                or.OrderBill = item.Bill;
+                _context.Orders.Add(or);
+                _context.SaveChanges();
 
-            //}
+            }
 
-            //TempData.Remove("total");
-            //TempData.Remove("cart");
+            TempData.Remove("total");
+            TempData.Remove("cart");
 
             TempData["msg"] = "Order Placed Successfully";
-      //   TempData.Keep();
+            TempData.Keep();
 
 
             return RedirectToAction("Index");
